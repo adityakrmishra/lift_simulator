@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Lift Animation with Subscribe Button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0; 
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+           
+        }
+        .glow {
+            font-size: 48px; 
+            color: #000000; 
+            text-align: center; 
+            animation: glow-animation 1.5s infinite alternate; 
+            bottom:30px;
+        }
+
+        @keyframes glow-animation {
+            0% {
+                text-shadow: 
+                    0 0 5px #ffffff, 
+                    0 0 10px #ffffff, 
+                    
+            }
+            100% {
+                text-shadow: 
+                    0 0 10px #ffffff, 
+                    0 0 20px #ffffff, 
+                    
+            }
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh; 
+            background-color: #e0e0e0; 
+            overflow: hidden; 
+            background-image: url('https://i.ibb.co/VDQLnzs/istockphoto-933681266-170667a.jpg" alt="istockphoto-933681266-170667a" border="0"'); /* Background image URL */
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+            
+        
+
+        .lift {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 120px;
+            background-color: #808080; 
+            border-radius: 10px;
+            transition: bottom 0.5s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            bottom: 0; 
+        }
+
+        .lift::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px; 
+            height: 80%; 
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .buttons {
+            position: absolute;
+            right: 5%; 
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column; 
+            outline:none;
+            webkit-tap-highlight-color:transparent;
+        }
+
+        .lift-button {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 2vw;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .lift-button:hover {
+            box-shadow: 0 0 10px #28a745, 0 0 20px #28a745;
+        }
+
+        .lift-button i {
+            font-size: 1.5em;
+        }
+
+    
+        .subscribe-button {
+            position: absolute;
+            left: 5%; 
+            top: 50%; 
+            transform: translateY(-50%);
+            background-color: #beff0b; 
+            color: rgb(0, 0, 0);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+            transition: background-color 0.3s ease;
+        }
+
+        .subscribe-button:hover {
+            background-color: #88ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glow">Lift Animation <img src="https://img.icons8.com/?size=100&id=wffVBtBf6MCM&format=png&color=000000"></div>
+    </body>
+        <div class="lift" id="lift"></div>
+        <div class="buttons">
+            <button class="lift-button" id="up-button"><i class="fas fa-arrow-up"></i></button>
+            <button class="lift-button" id="down-button"><i class="fas fa-arrow-down"></i></button>
+        </div>
+        <a href="https://www.youtube.com/@Cjrcoder" target="_blank"><button class="subscribe-button" id="subscribe-button">Subscribe</button></a>
+    </div>
+    <script>
+        const lift = document.getElementById('lift');
+        const upButton = document.getElementById('up-button');
+        const downButton = document.getElementById('down-button');
+
+        let liftPosition = 0; 
+
+       
+        lift.style.bottom = liftPosition + '%';
+
+        upButton.addEventListener('click', () => {
+            if (liftPosition < 100) {
+                liftPosition += 10; 
+                lift.style.bottom = liftPosition + '%';
+            }
+        });
+
+        downButton.addEventListener('click', () => {
+            if (liftPosition > 0) {
+                liftPosition -= 10; 
+                lift.style.bottom = liftPosition + '%';
+            }
+        });
+
+      
+       
+    </script>
+</body>
+</html>
